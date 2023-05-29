@@ -1,0 +1,248 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 Best Food in Thai</title>
+</head>
+<body>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+ integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+ crossorigin="" />
+ 
+ <!-- W3 CSS template -->
+ <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+ 
+ <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+ <style>
+ #mapid {
+ height: 800px;
+ }
+ </style>
+
+ <!-- สร้างตารางเพื่อนำข้อมูลไว้ฝั่งซ้ายมือ -->
+ <div class="w3-row">
+ <div id="mapid" class="w3-half"></div>
+ <div id="content" class="w3-half">
+ <table class="w3-table w3-striped">
+ <tr>
+ <th>ชื่อร้านอาหาร</th>
+ <th>คะแนนความนิยม</th>
+ <!-- <th>ระดับ</th> -->
+ </tr>
+ <!-- <tr>
+ <td>น้ำตก A</td>
+ <td>ธรรมชาติ</td>
+ <td>A</td>
+ </tr> -->
+ </table>
+ </div>
+ </div>
+ 
+ <script>
+    var map = L.map("mapid").setView([15.885530178696222, 101.26217151968072], 6);
+ 
+    var osm = L.tileLayer(
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+    ).addTo(map);
+    var gsat = L.tileLayer(
+        "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
+    ).addTo(map);
+ 
+ var baseMaps = {
+    OSM: osm,
+    GoogleSat: gsat,
+ };
+
+    var food = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "ชื่อร้านอาหาร": "KruoApsorn",
+        "คะแนนความนิยม": 8
+      },
+      "geometry": {
+        "coordinates": [
+          100.50154100000242,
+          13.755441106398848
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ชื่อร้านอาหาร": "SupannigaEatingRoom",
+        "คะแนนความนิยม": 8
+      },
+      "geometry": {
+        "coordinates": [
+          100.5274750000006,
+          13.723052901561303
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ชื่อร้านอาหาร": "RuenMallika",
+        "คะแนนความนิยม": 8
+      },
+      "geometry": {
+        "coordinates": [
+          100.56310372883638,
+          13.725214056182978
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ชื่อร้านอาหาร": "BaanKhanitha",
+        "คะแนนความนิยม": 8
+      },
+      "geometry": {
+        "coordinates": [
+          100.51092272883659,
+          13.727155055965653
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ชื่อร้านอาหาร": "AttaRote",
+        "คะแนนความนิยม": 9
+      },
+      "geometry": {
+        "coordinates": [
+          100.5716490000014,
+          13.737695632876466
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ชื่อร้านอาหาร": "LukKaiThong",
+        "คะแนนความนิยม": 9
+      },
+      "geometry": {
+        "coordinates": [
+          100.569072,
+          13.73128078889836
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ชื่อร้านอาหาร": "SalaRattanakosin",
+        "คะแนนความนิยม": 10
+      },
+      "geometry": {
+        "coordinates": [
+          100.49082400000253,
+          13.745269632371574
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ชื่อร้านอาหาร": "Kinyodai",
+        "คะแนนความนิยม": 7
+      },
+      "geometry": {
+        "coordinates": [
+          99.00344999999987,
+          18.760177079422505
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ชื่อร้านอาหาร": "KiewkaiKa",
+        "คะแนนความนิยม": 8
+      },
+      "geometry": {
+        "coordinates": [
+          98.96855000000164,
+          18.79981623468383
+        ],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "ชื่อร้านอาหาร": "RarkAuthenticThaiCuisine",
+        "คะแนนความนิยม": 10
+      },
+      "geometry": {
+        "coordinates": [
+          100.54390327116539,
+          13.67985321224171
+        ],
+        "type": "Point"
+      }
+    }
+  ]
+}
+
+
+var tourLayer = L.geoJSON(food, {
+ pointToLayer: function (feature, latlng) {
+ return L.marker(latlng).bindPopup(feature.properties.ชื่อร้านอาหาร);
+ },
+ onEachFeature: function (feature, layer) {
+ layer.on("mouseover", function () {
+ document
+ .getElementById(feature.properties.ชื่อร้านอาหาร)
+ .classList.add("w3-red");
+ });
+ 
+ layer.on("mouseout", function () {
+ document
+ .getElementById(feature.properties.ชื่อร้านอาหาร)
+ .classList.remove("w3-red");
+ });
+ },
+ }).addTo(map);
+ 
+ var cont = "";
+ cont += "<table class='w3-table w3-striped'>";
+ cont += "<tr>";
+ cont += "<th>ชื่อร้านอาหาร</th>";
+ cont += "<th>คะแนนความนิยม</th>";
+ cont += "</tr>";
+ for (let i in food.features) {
+ cont += "<tr id=" + food.features[i].properties.ชื่อร้านอาหาร + ">";
+ cont += "<td>" + food.features[i].properties.ชื่อร้านอาหาร + "</td>";
+ cont += "<td>" + food.features[i].properties.คะแนนความนิยม + "</td>";
+//  cont += "<td>" + tour.features[i].properties.level + "</td>";
+ cont += "</tr>";
+ }
+ cont += "</table>";
+ console.log(cont);
+ document.getElementById("content").innerHTML = cont;
+
+ var overlays = {ชื่อร้านอาหาร: tourLayer};
+ //add leyer control
+ L.control.layers(baseMaps, overlays).addTo(map); //ชั้นข้อมูล
+</script>
+
+</body>
+</html>
